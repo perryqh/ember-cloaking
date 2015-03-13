@@ -431,17 +431,5 @@
      }.on('didInsertElement')
   });
 
-  Ember.Handlebars.registerHelper('cloaked-collection', function(options) {
-    var hash = options.hash,
-        types = options.hashTypes;
-
-    for (var prop in hash) {
-      if (types[prop] === 'ID') {
-        hash[prop + 'Binding'] = hash[prop];
-        delete hash[prop];
-      }
-    }
-    return Ember.Handlebars.helpers.view.call(this, Ember.CloakedCollectionView, options);
-  });
-
+  Ember.Handlebars.helper('cloaked-collection', Ember.CloakedCollectionView)
 })();
